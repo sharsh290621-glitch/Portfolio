@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="folder-back" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4F8FFF" />
+      <stop offset="100%" stop-color="#0055FF" />
+    </linearGradient>
+    <linearGradient id="folder-front" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6FA6FF" />
+      <stop offset="100%" stop-color="#1A68FF" />
+    </linearGradient>
+    <linearGradient id="sheet-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <filter id="folder-shadow" x="-20%" y="-15%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#002D8C" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <g filter="url(#folder-shadow)" transform="translate(15, 20)">
+    <!-- Folder Tab Back -->
+    <path d="M10,25 C10,20 14,16 19,16 L65,16 C70,16 74,19 77,23 L85,32 L151,32 C156,32 160,36 160,41 L160,120 C160,125 156,129 151,129 L19,129 C14,129 10,125 10,120 Z" fill="url(#folder-back)" />
+
+    <!-- Document Sheets Peeking Out -->
+    <rect x="26" y="24" width="118" height="70" rx="3" fill="url(#sheet-grad)" stroke="#CBD5E1" stroke-width="0.75" transform="rotate(-4 85 59)" />
+    <!-- Graphic on peeking sheet -->
+    <rect x="36" y="32" width="40" height="4" rx="2" fill="#0055FF" transform="rotate(-4 85 59)" />
+    <rect x="36" y="40" width="60" height="2" rx="1" fill="#94A3B8" transform="rotate(-4 85 59)" />
+
+    <rect x="32" y="22" width="112" height="75" rx="3" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.75" transform="rotate(3 88 59)" />
+    <circle cx="50" cy="40" r="8" fill="#FF3B30" opacity="0.8" transform="rotate(3 88 59)" />
+
+    <!-- Folder Front Flap -->
+    <path d="M5,42 C5,38 8,35 12,35 L68,35 C73,35 77,38 80,42 L88,50 L158,50 C162,50 165,53 165,57 L165,124 C165,128 162,132 158,132 L12,132 C8,132 5,128 5,124 Z" fill="url(#folder-front)" stroke="#89B6FF" stroke-width="0.75" />
+
+    <!-- Folder Grid / Details Icon on Front -->
+    <g fill="#FFFFFF" fill-opacity="0.85">
+      <rect x="25" y="70" width="14" height="14" rx="3" />
+      <rect x="43" y="70" width="14" height="14" rx="3" />
+      <rect x="25" y="88" width="14" height="14" rx="3" />
+      <rect x="43" y="88" width="14" height="14" rx="3" />
+    </g>
+
+    <!-- Badge: "12 SELECTED" -->
+    <rect x="105" y="72" width="48" height="20" rx="10" fill="#0F172A" stroke="#38BDF8" stroke-width="1" />
+    <text x="129" y="85" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" fill="#38BDF8" text-anchor="middle">12 WORKS</text>
+  </g>
+</svg>

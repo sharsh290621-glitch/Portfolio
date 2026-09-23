@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pos-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EDF2F7" />
+    </linearGradient>
+    <linearGradient id="chart-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0055FF" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0055FF" stop-opacity="0.0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Surface -->
+  <rect width="600" height="380" fill="url(#pos-bg)" />
+
+  <!-- Top App Bar -->
+  <rect x="0" y="0" width="600" height="46" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+  <circle cx="28" cy="23" r="10" fill="#0055FF" />
+  <text x="28" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#FFFFFF" text-anchor="middle">C</text>
+  <text x="46" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#0F172A">ChoosePOS</text>
+  
+  <rect x="150" y="12" width="180" height="22" rx="6" fill="#F1F5F9" />
+  <text x="165" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748B">🔍 Search orders, SKUs...</text>
+  
+  <rect x="470" y="11" width="115" height="24" rx="6" fill="#0055FF" />
+  <text x="527" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#FFFFFF" text-anchor="middle">+ NEW ORDER</text>
+
+  <!-- Left Sidebar Mini -->
+  <rect x="0" y="46" width="56" height="334" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+  <rect x="14" y="60" width="28" height="28" rx="6" fill="#EFF6FF" />
+  <rect x="22" y="68" width="12" height="12" rx="2" fill="#0055FF" />
+  <circle cx="28" cy="115" r="6" fill="#CBD5E1" />
+  <circle cx="28" cy="155" r="6" fill="#CBD5E1" />
+  <circle cx="28" cy="195" r="6" fill="#CBD5E1" />
+
+  <!-- Main Content Area -->
+  <!-- 3 Metric Cards Top -->
+  <g transform="translate(72, 60)">
+    <rect x="0" y="0" width="155" height="68" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B">TODAY'S VOLUME</text>
+    <text x="12" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#0F172A">$18,429.50</text>
+    <text x="12" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#16A34A">↑ +14.2% vs yesterday</text>
+
+    <rect x="170" y="0" width="155" height="68" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="182" y="20" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B">ORDERS ACTIVE</text>
+    <text x="182" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#0F172A">342 pkts</text>
+    <text x="182" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#0055FF">● 98% Fulfillment</text>
+
+    <rect x="340" y="0" width="170" height="68" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="352" y="20" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748B">AVERAGE TICKET</text>
+    <text x="352" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="18" fill="#0F172A">$53.88</text>
+    <text x="352" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#16A34A">↑ High Margin</text>
+  </g>
+
+  <!-- Live Revenue Graph Chart -->
+  <g transform="translate(72, 142)">
+    <rect x="0" y="0" width="325" height="222" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="16" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#0F172A">Live Terminal Velocity</text>
+    <text x="16" y="38" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8">Realtime transaction throughput</text>
+
+    <!-- Grid lines -->
+    <line x1="16" y1="70" x2="309" y2="70" stroke="#F1F5F9" stroke-width="1" />
+    <line x1="16" y1="110" x2="309" y2="110" stroke="#F1F5F9" stroke-width="1" />
+    <line x1="16" y1="150" x2="309" y2="150" stroke="#F1F5F9" stroke-width="1" />
+    <line x1="16" y1="190" x2="309" y2="190" stroke="#F1F5F9" stroke-width="1" />
+
+    <!-- Chart Path -->
+    <path d="M20,170 C60,160 80,110 120,130 C160,150 190,75 230,85 C270,95 290,50 305,55 L305,190 L20,190 Z" fill="url(#chart-grad)" />
+    <path d="M20,170 C60,160 80,110 120,130 C160,150 190,75 230,85 C270,95 290,50 305,55" fill="none" stroke="#0055FF" stroke-width="2.5" />
+    
+    <circle cx="305" cy="55" r="4" fill="#0055FF" />
+    <circle cx="305" cy="55" r="7" fill="#0055FF" fill-opacity="0.25" />
+  </g>
+
+  <!-- Live Orders Feed Table -->
+  <g transform="translate(412, 142)">
+    <rect x="0" y="0" width="170" height="222" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" />
+    <text x="14" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#0F172A">Recent Orders</text>
+    
+    <!-- Row 1 -->
+    <rect x="10" y="40" width="150" height="36" rx="4" fill="#F8FAFC" />
+    <text x="18" y="55" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#0F172A">#POS-9481</text>
+    <text x="18" y="68" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#64748B">Table 04 • 3 items</text>
+    <text x="150" y="60" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#0055FF" text-anchor="end">$64.20</text>
+
+    <!-- Row 2 -->
+    <rect x="10" y="82" width="150" height="36" rx="4" fill="#F8FAFC" />
+    <text x="18" y="97" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#0F172A">#POS-9480</text>
+    <text x="18" y="110" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#64748B">Express Bar • 1 item</text>
+    <text x="150" y="102" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#0055FF" text-anchor="end">$18.00</text>
+
+    <!-- Row 3 -->
+    <rect x="10" y="124" width="150" height="36" rx="4" fill="#F8FAFC" />
+    <text x="18" y="139" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#0F172A">#POS-9479</text>
+    <text x="18" y="152" font-family="'Plus Jakarta Sans', sans-serif" font-size="8" fill="#64748B">Takeout App • 5 items</text>
+    <text x="150" y="144" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="10" fill="#0055FF" text-anchor="end">$142.50</text>
+
+    <!-- Status pill -->
+    <rect x="10" y="174" width="150" height="34" rx="6" fill="#DCFCE7" />
+    <text x="85" y="195" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#166534" text-anchor="middle">SYNCED TO CLOUD</text>
+  </g>
+</svg>

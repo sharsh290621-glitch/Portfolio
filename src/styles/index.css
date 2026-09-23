@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-studio: #F5F3EE;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --border-studio: #D7D4CC;
+    --accent-blue: #0055FF;
+  }
+
+  html {
+    background-color: var(--bg-studio);
+    color: var(--text-primary);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-studio);
+    overflow-x: hidden;
+  }
+}
+
+/* Studio Desktop Grid Pattern with ~35% clear tactile visibility */
+.studio-grid-pattern {
+  background-image: 
+    radial-gradient(circle at 1.5px 1.5px, rgba(175, 170, 155, 0.85) 1.5px, transparent 0);
+  background-size: 28px 28px;
+}
+
+/* Custom Fine Noise Texture Overlay */
+.studio-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F3EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #D7D4CC;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
+
+/* Disable user drag on images & non-interactive items */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Monospace Micro Label */
+.mono-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism Window Header */
+.window-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Hide native OS cursor in hero so custom Photoshop Pen Tool cursor is exclusively visible */
+@media (min-width: 768px) {
+  #hero,
+  #hero *,
+  #hero a,
+  #hero button,
+  #hero input {
+    cursor: none !important;
+  }
+}

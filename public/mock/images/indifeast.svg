@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="feast-bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#2D1A16" />
+      <stop offset="60%" stop-color="#190F0C" />
+      <stop offset="100%" stop-color="#0E0807" />
+    </radialGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE8A3" />
+      <stop offset="35%" stop-color="#D4AF37" />
+      <stop offset="70%" stop-color="#AA7C11" />
+      <stop offset="100%" stop-color="#F3E5AB" />
+    </linearGradient>
+    <linearGradient id="terracotta" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C84B31" />
+      <stop offset="100%" stop-color="#8F2D18" />
+    </linearGradient>
+    <filter id="box-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="20" flood-color="#000000" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#feast-bg)" />
+
+  <!-- Heritage Botanical Background Pattern -->
+  <g opacity="0.06" stroke="url(#gold-grad)" stroke-width="1.2" fill="none">
+    <circle cx="250" cy="250" r="210" />
+    <circle cx="250" cy="250" r="180" stroke-dasharray="4 8" />
+    <circle cx="250" cy="250" r="150" />
+    <!-- Botanical rays -->
+    <path d="M250,40 L250,460 M40,250 L460,250 M100,100 L400,400 M100,400 L400,100" />
+    <polygon points="250,50 280,120 350,150 280,180 250,250 220,180 150,150 220,120" />
+    <polygon points="250,450 280,380 350,350 280,320 250,250 220,320 150,350 220,380" />
+  </g>
+
+  <!-- Luxury Packaging Box (Isometric Floating) -->
+  <g filter="url(#box-shadow)" transform="translate(135, 75)">
+    <!-- Box Front Face -->
+    <rect x="0" y="0" width="230" height="340" rx="6" fill="#1C1412" stroke="url(#gold-grad)" stroke-width="2" />
+    
+    <!-- Top Terracotta Ribbon / Seal -->
+    <path d="M40,0 L190,0 L190,45 L115,35 L40,45 Z" fill="url(#terracotta)" />
+    <circle cx="115" cy="20" r="10" fill="url(#gold-grad)" />
+    <text x="115" y="23" font-family="'JetBrains Mono', monospace" font-size="7" font-weight="bold" fill="#1A0E0B" text-anchor="middle">EST. 1892</text>
+
+    <!-- Ornate Frame Border -->
+    <rect x="18" y="58" width="194" height="264" rx="4" fill="none" stroke="url(#gold-grad)" stroke-width="0.75" stroke-opacity="0.6" stroke-dasharray="8 4" />
+    <rect x="22" y="62" width="186" height="256" rx="3" fill="#150E0C" />
+
+    <!-- Brand Emblem -->
+    <circle cx="115" cy="115" r="28" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" />
+    <circle cx="115" cy="115" r="24" fill="url(#terracotta)" fill-opacity="0.3" />
+    <!-- Royal Peacock Motif -->
+    <path d="M115,96 C120,105 128,115 115,130 C102,115 110,105 115,96 Z" fill="url(#gold-grad)" />
+    <circle cx="115" cy="104" r="3" fill="#FFE8A3" />
+
+    <!-- Brand Typography -->
+    <text x="115" y="172" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="20" fill="url(#gold-grad)" text-anchor="middle" letter-spacing="3">INDIFEAST</text>
+    <text x="115" y="188" font-family="'JetBrains Mono', monospace" font-weight="500" font-size="8" fill="#C8A265" text-anchor="middle" letter-spacing="2">HERITAGE SPICE INFUSIONS</text>
+    
+    <line x1="60" y1="198" x2="170" y2="198" stroke="url(#gold-grad)" stroke-width="0.75" />
+
+    <!-- Product Details -->
+    <text x="115" y="222" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="12" fill="#FFFFFF" text-anchor="middle">Royal Saffron &amp; Cardamom</text>
+    <text x="115" y="238" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#9C8B7E" text-anchor="middle">Artisanal Small Batch • Slow Roasted</text>
+    
+    <!-- Flavor Badges -->
+    <rect x="45" y="260" width="65" height="18" rx="9" fill="#2C1B17" stroke="url(#gold-grad)" stroke-width="0.8" />
+    <text x="77" y="272" font-family="'JetBrains Mono', monospace" font-size="7" fill="#FFE8A3" text-anchor="middle">100% ORGANIC</text>
+
+    <rect x="120" y="260" width="65" height="18" rx="9" fill="#2C1B17" stroke="url(#gold-grad)" stroke-width="0.8" />
+    <text x="152" y="272" font-family="'JetBrains Mono', monospace" font-size="7" fill="#FFE8A3" text-anchor="middle">250g NET WT</text>
+
+    <!-- Gold Foil Quality Seal Bottom -->
+    <rect x="80" y="294" width="70" height="14" rx="2" fill="url(#gold-grad)" />
+    <text x="115" y="304" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="7" fill="#1C1412" text-anchor="middle" letter-spacing="1">AWARD WINNING</text>
+  </g>
+</svg>

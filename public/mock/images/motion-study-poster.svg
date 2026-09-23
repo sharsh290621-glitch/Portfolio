@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <defs>
+    <linearGradient id="motion-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050508" />
+      <stop offset="100%" stop-color="#141124" />
+    </linearGradient>
+    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF2A54" />
+      <stop offset="50%" stop-color="#7000FF" />
+      <stop offset="100%" stop-color="#0055FF" />
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="250" fill="url(#motion-bg)" />
+
+  <!-- Animated-style 3D Wireframe Rings -->
+  <g transform="translate(200, 125)">
+    <!-- Concentric Ellipses / Gyroscope -->
+    <ellipse cx="0" cy="0" rx="90" ry="35" fill="none" stroke="url(#ring-grad)" stroke-width="2" transform="rotate(-25)" />
+    <ellipse cx="0" cy="0" rx="90" ry="35" fill="none" stroke="#00D4FF" stroke-width="1.5" transform="rotate(35)" opacity="0.8" />
+    <ellipse cx="0" cy="0" rx="75" ry="75" fill="none" stroke="#FFFFFF" stroke-width="0.75" stroke-dasharray="3 6" opacity="0.4" />
+    
+    <!-- Core Glow Sphere -->
+    <circle cx="0" cy="0" r="28" fill="#0055FF" filter="blur(15px)" opacity="0.7" />
+    <circle cx="0" cy="0" r="18" fill="#FFFFFF" />
+    <circle cx="0" cy="0" r="8" fill="#050508" />
+  </g>
+
+  <!-- Kinetic Typography Streamers -->
+  <text x="20" y="34" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="16" fill="#FFFFFF" letter-spacing="1">MOTION STUDY // 08</text>
+  <text x="20" y="48" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00D4FF">3D KINETIC TOPOLOGY • 60 FPS</text>
+
+  <!-- Bottom Play Indicator Pill -->
+  <rect x="20" y="210" width="80" height="20" rx="10" fill="#1E1C2E" stroke="#373352" stroke-width="1" />
+  <circle cx="32" cy="220" r="4" fill="#22C55E" />
+  <text x="44" y="224" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" fill="#E2E8F0">LOOPING</text>
+
+  <text x="380" y="224" font-family="'JetBrains Mono', monospace" font-size="8" fill="#787396" text-anchor="end">00:04 / 00:15</text>
+</svg>

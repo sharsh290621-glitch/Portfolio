@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 594" width="100%" height="100%">
+  <!-- Aspect ratio 1:sqrt(2) standard A-series poster -->
+  <defs>
+    <linearGradient id="poster-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E0E10" />
+      <stop offset="100%" stop-color="#181920" />
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="594" fill="url(#poster-grad)" />
+
+  <!-- Layout Grid Lines (Swiss Style) -->
+  <g stroke="#262833" stroke-width="0.75" stroke-dasharray="2 4">
+    <line x1="30" y1="0" x2="30" y2="594" />
+    <line x1="130" y1="0" x2="130" y2="594" />
+    <line x1="230" y1="0" x2="230" y2="594" />
+    <line x1="330" y1="0" x2="330" y2="594" />
+    <line x1="390" y1="0" x2="390" y2="594" />
+    
+    <line x1="0" y1="40" x2="420" y2="40" />
+    <line x1="0" y1="180" x2="420" y2="180" />
+    <line x1="0" y1="360" x2="420" y2="360" />
+    <line x1="0" y1="520" x2="420" y2="520" />
+  </g>
+
+  <!-- Top Metadata Bar -->
+  <text x="30" y="32" font-family="'JetBrains Mono', monospace" font-size="8" fill="#888E9E" letter-spacing="1">ARCHIVE / N° 092</text>
+  <text x="210" y="32" font-family="'JetBrains Mono', monospace" font-size="8" fill="#0055FF" text-anchor="middle" letter-spacing="2">FORM FOLLOWS MOTION</text>
+  <text x="390" y="32" font-family="'JetBrains Mono', monospace" font-size="8" fill="#888E9E" text-anchor="end">2026.EDITION</text>
+
+  <!-- Giant Electric Blue Circle / Graphic Intervention -->
+  <circle cx="210" cy="240" r="140" fill="#0055FF" />
+  
+  <!-- Overlapping Geometric Shapes & Cutouts -->
+  <circle cx="270" cy="240" r="80" fill="#F5F3EE" />
+  <circle cx="270" cy="240" r="40" fill="#0E0E10" />
+  <rect x="70" y="235" width="280" height="10" fill="#0E0E10" />
+
+  <!-- Diagonal typographic banner -->
+  <g transform="rotate(-15 210 240)">
+    <rect x="10" y="225" width="400" height="30" fill="#FF2A54" />
+    <text x="210" y="246" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">KINETIC TYPOGRAPHY STUDY</text>
+  </g>
+
+  <!-- Big Display Typography -->
+  <text x="30" y="110" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" letter-spacing="-1">DYNAMIC</text>
+  <text x="30" y="152" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="44" fill="#FFFFFF" letter-spacing="-1">STRUCTURES</text>
+
+  <text x="30" y="440" font-family="'Space Grotesk', sans-serif" font-weight="800" font-size="64" fill="#F5F3EE" letter-spacing="-3">026</text>
+  <text x="175" y="415" font-family="'JetBrains Mono', monospace" font-size="9" fill="#0055FF" font-weight="bold">● EXPERIMENTAL LAB</text>
+  <text x="175" y="432" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#A0A5B5">An exploration into computational geometry,</text>
+  <text x="175" y="446" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#A0A5B5">brutalist layouts, and generative systems.</text>
+
+  <!-- Bottom Details & Barcode -->
+  <rect x="30" y="520" width="360" height="1" fill="#2E3240" />
+  
+  <text x="30" y="546" font-family="'JetBrains Mono', monospace" font-size="8" fill="#71778A">HARSH SHAH STUDIO</text>
+  <text x="30" y="560" font-family="'JetBrains Mono', monospace" font-size="7" fill="#4B5060">ALL RIGHTS RESERVED</text>
+
+  <!-- Mock Vector Barcode -->
+  <g transform="translate(300, 532)" fill="#FFFFFF">
+    <rect x="0" y="0" width="2" height="30" />
+    <rect x="4" y="0" width="4" height="30" />
+    <rect x="11" y="0" width="1" height="30" />
+    <rect x="15" y="0" width="3" height="30" />
+    <rect x="21" y="0" width="6" height="30" />
+    <rect x="30" y="0" width="2" height="30" />
+    <rect x="35" y="0" width="4" height="30" />
+    <rect x="42" y="0" width="1" height="30" />
+    <rect x="46" y="0" width="3" height="30" />
+    <rect x="52" y="0" width="5" height="30" />
+    <rect x="60" y="0" width="2" height="30" />
+    <rect x="65" y="0" width="4" height="30" />
+    <rect x="72" y="0" width="2" height="30" />
+    <rect x="77" y="0" width="5" height="30" />
+    <rect x="85" y="0" width="2" height="30" />
+  </g>
+</svg>

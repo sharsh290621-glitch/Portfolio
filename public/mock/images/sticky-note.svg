@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="paper-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8D1" />
+      <stop offset="50%" stop-color="#FFF2B2" />
+      <stop offset="100%" stop-color="#FFE885" />
+    </linearGradient>
+    <filter id="sticky-drop" x="-15%" y="-10%" width="135%" height="135%">
+      <feDropShadow dx="2" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <g filter="url(#sticky-drop)">
+    <!-- Sticky Paper Note -->
+    <path d="M15,20 L215,15 C218,15 220,17 220,20 L225,205 C225,209 222,213 218,214 L20,225 C16,226 12,223 12,219 L10,24 C10,22 12,20 15,20 Z" fill="url(#paper-grad)" stroke="#EAD572" stroke-width="0.75" />
+
+    <!-- Top Adhesive Shadow Strip -->
+    <path d="M13,22 L217,17 L218,52 L12,56 Z" fill="#FFE066" fill-opacity="0.4" />
+
+    <!-- Translucent Tape at Top Center -->
+    <rect x="90" y="6" width="55" height="22" rx="2" fill="#FFFFFF" fill-opacity="0.5" stroke="#E6E0C0" stroke-width="0.5" transform="rotate(-3 115 15)" />
+
+    <!-- Hand-drawn Red Pin / Pushpin -->
+    <circle cx="115" cy="18" r="5" fill="#FF3B30" />
+    <circle cx="113" cy="16" r="1.5" fill="#FFFFFF" fill-opacity="0.8" />
+
+    <!-- Bold Marker Lettering: MAKE GOOD SHIT. -->
+    <g fill="#1A1815" font-family="'Space Grotesk', 'Plus Jakarta Sans', sans-serif" font-weight="900">
+      <text x="36" y="95" font-size="32" letter-spacing="-1" transform="rotate(-1 36 95)">MAKE</text>
+      <text x="34" y="135" font-size="34" letter-spacing="-1" transform="rotate(1 34 135)">GOOD</text>
+      <text x="32" y="180" font-size="38" letter-spacing="-1" fill="#0055FF" transform="rotate(-2 32 180)">SHIT.</text>
+    </g>
+
+    <!-- Underline marker stroke -->
+    <path d="M30,192 C65,190 120,194 155,190" stroke="#0055FF" stroke-width="4" stroke-linecap="round" fill="none" />
+
+    <!-- Small hand-drawn star -->
+    <path d="M185,85 L187,93 L195,95 L187,97 L185,105 L183,97 L175,95 L183,93 Z" fill="#E6A800" />
+  </g>
+</svg>
