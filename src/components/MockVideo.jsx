@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react';
 
 export default function MockVideo({
   src,
@@ -7,15 +7,104 @@ export default function MockVideo({
   title = 'Motion Study',
   category = 'Motion Graphics',
   autoPlay = true,
+  isHovered = false,
   className = '',
   aspectRatio = '16/10'
 }) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const containerRef = useRef(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(null);
+  const audioCtxRef = useRef(null);
+  const gainNodeRef = useRef(null);
+
+  // Synthesize procedural motion chord/ambient sound on hover
+  const playHoverSound = () => {
+    try {
+      if (!audioCtxRef.current) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        audioCtxRef.current = new AudioCtx();
+
+        const masterGain = audioCtxRef.current.createGain();
+        masterGain.gain.setValueAtTime(0, audioCtxRef.current.currentTime);
+        masterGain.connect(audioCtxRef.current.destination);
+        gainNodeRef.current = masterGain;
+
+        // Determine base note based on title
+        const baseFreq = title.toLowerCase().includes('after') ? 130.81 : 146.83; // C3 or D3
+
+        // Oscillator 1 (Warm Sine Tone)
+        const osc1 = audioCtxRef.current.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(baseFreq, audioCtxRef.current.currentTime);
+
+        // Oscillator 2 (Harmonic 5th)
+        const osc2 = audioCtxRef.current.createOscillator();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(baseFreq * 1.5, audioCtxRef.current.currentTime);
+
+        const g1 = audioCtxRef.current.createGain();
+        g1.gain.setValueAtTime(0.06, audioCtxRef.current.currentTime);
+        osc1.connect(g1);
+        g1.connect(masterGain);
+
+        const g2 = audioCtxRef.current.createGain();
+        g2.gain.setValueAtTime(0.04, audioCtxRef.current.currentTime);
+        osc2.connect(g2);
+        g2.connect(masterGain);
+
+        osc1.start();
+        osc2.start();
+      }
+
+      if (audioCtxRef.current.state === 'suspended') {
+        audioCtxRef.current.resume();
+      }
+
+      if (gainNodeRef.current) {
+        gainNodeRef.current.gain.setTargetAtTime(
+          isMuted ? 0 : 0.08,
+          audioCtxRef.current.currentTime,
+          0.1
+        );
+      }
+    } catch (e) {
+      // Audio fallback
+    }
+  };
+
+  const stopHoverSound = () => {
+    if (gainNodeRef.current && audioCtxRef.current) {
+      gainNodeRef.current.gain.setTargetAtTime(
+        0,
+        audioCtxRef.current.currentTime,
+        0.15
+      );
+    }
+  };
+
+  // React to hover state
+  useEffect(() => {
+    if (isHovered) {
+      setIsPlaying(true);
+      if (!isMuted) {
+        playHoverSound();
+      }
+      if (videoRef.current) {
+        videoRef.current.muted = isMuted;
+        videoRef.current.play().catch(() => {});
+      }
+    } else {
+      stopHoverSound();
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+      }
+    }
+  }, [isHovered, isMuted]);
 
   // Animated Kinetic Canvas simulation for high-FPS motion graphics
   useEffect(() => {
@@ -23,7 +112,7 @@ export default function MockVideo({
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let angle = 0;
-    
+
     // Seed particles
     const particles = Array.from({ length: 24 }, () => ({
       x: Math.random() * 300,
@@ -50,7 +139,7 @@ export default function MockVideo({
       ctx.fillStyle = isAfterEffects ? '#120824' : '#07070D';
       ctx.fillRect(0, 0, w, h);
 
-      angle += 0.03;
+      angle += isHovered ? 0.05 : 0.025;
 
       if (isAfterEffects) {
         // After Effects Bezier Velocity Curve Animation
@@ -168,7 +257,7 @@ export default function MockVideo({
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isPlaying, title, category]);
+  }, [isPlaying, isHovered, title, category]);
 
   const togglePlay = (e) => {
     e?.stopPropagation();
@@ -181,14 +270,31 @@ export default function MockVideo({
 
   const toggleMute = (e) => {
     e?.stopPropagation();
-    setIsMuted(!isMuted);
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if (nextMuted) {
+      stopHoverSound();
+    } else if (isHovered) {
+      playHoverSound();
+    }
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+      videoRef.current.muted = nextMuted;
+    }
+  };
+
+  const toggleFullscreen = (e) => {
+    e?.stopPropagation();
+    if (!containerRef.current) return;
+    if (!document.fullscreenElement) {
+      containerRef.current.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
     }
   };
 
   return (
     <div
+      ref={containerRef}
       className={`relative w-full h-full bg-studio-dark overflow-hidden group select-none ${className}`}
       style={{ aspectRatio: aspectRatio || '16/10' }}
     >
@@ -220,6 +326,15 @@ export default function MockVideo({
         <span>60 FPS</span>
       </div>
 
+      {/* Sound Indicator Top-Right when hovered */}
+      {isHovered && !isMuted && (
+        <div className="absolute top-1.5 right-1.5 z-10 flex items-center gap-0.5 h-3 px-1.5 py-0.5 rounded bg-studio-blue/70 backdrop-blur-md border border-white/20 text-[7px] font-mono text-white">
+          <span className="w-0.5 h-full bg-white animate-pulse" />
+          <span className="w-0.5 h-2 bg-sky-200 animate-pulse [animation-delay:0.1s]" />
+          <span className="w-0.5 h-2.5 bg-white animate-pulse [animation-delay:0.2s]" />
+        </div>
+      )}
+
       {/* Bottom Floating Control Bar on Hover */}
       <div className="absolute inset-x-0 bottom-0 z-20 p-1.5 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
         {/* Progress Bar */}
@@ -238,6 +353,7 @@ export default function MockVideo({
               onClick={togglePlay}
               className="p-0.5 rounded hover:bg-white/20 text-white transition-colors"
               aria-label={isPlaying ? 'Pause' : 'Play'}
+              title={isPlaying ? 'Pause' : 'Play'}
             >
               {isPlaying ? <Pause size={8} /> : <Play size={8} />}
             </button>
@@ -246,17 +362,29 @@ export default function MockVideo({
               onClick={toggleMute}
               className="p-0.5 rounded hover:bg-white/20 text-white transition-colors"
               aria-label={isMuted ? 'Unmute' : 'Mute'}
+              title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
             >
               {isMuted ? <VolumeX size={8} /> : <Volume2 size={8} />}
             </button>
             <span className="text-white/60 text-[7px]">00:0{Math.floor(progress / 20)}</span>
           </div>
 
-          <span className="text-[7px] tracking-wider uppercase text-white/70 truncate max-w-[80px]">
-            {category}
-          </span>
+          <div className="flex items-center gap-1">
+            <span className="text-[7px] tracking-wider uppercase text-white/70 truncate max-w-[70px]">
+              {category}
+            </span>
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="p-0.5 rounded hover:bg-white/20 text-white transition-colors"
+              title="Fullscreen"
+            >
+              <Maximize2 size={8} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+

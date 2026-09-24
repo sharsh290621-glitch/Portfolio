@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Hero from './components/Hero';
+import AboutShowreelSection from './components/AboutShowreelSection';
 import ProjectPreview from './components/ProjectPreview';
 import { floatingObjectsData } from './data/projects';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
@@ -31,9 +32,9 @@ function PortfolioApp() {
   };
 
   const scrollToWork = () => {
-    const workSection = document.getElementById('work-preview-boundary');
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: 'smooth' });
+    const showreelSection = document.getElementById('about-showreel');
+    if (showreelSection) {
+      showreelSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -54,6 +55,9 @@ function PortfolioApp() {
           onSelectProject={(project) => setSelectedProject(project)}
           onExploreClick={scrollToWork}
         />
+
+        {/* Featured About Me Showreel Video (60-70% Centered Screen Width) */}
+        <AboutShowreelSection onOpenProject={(project) => setSelectedProject(project)} />
 
         {/* Seamless Continuous Work Section (No partition / No background breaks) */}
         <div

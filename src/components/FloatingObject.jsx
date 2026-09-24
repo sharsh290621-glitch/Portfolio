@@ -47,6 +47,7 @@ export default function FloatingObject({
               poster={item.image}
               title={item.title}
               category={item.category}
+              isHovered={isThisHovered}
             />
           </CreativeWindow>
         );
