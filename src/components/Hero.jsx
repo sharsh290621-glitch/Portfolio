@@ -4,7 +4,6 @@ import PortfolioNavbar from './PortfolioNavbar';
 import HeroTypography from './HeroTypography';
 import FloatingCanvas from './FloatingCanvas';
 import PenToolCursor from './PenToolCursor';
-import { Mouse, ArrowDown } from 'lucide-react';
 
 export default function Hero({ onSelectProject, onExploreClick }) {
   const containerRef = useRef(null);
@@ -57,40 +56,6 @@ export default function Hero({ onSelectProject, onExploreClick }) {
           />
         </motion.div>
       </div>
-
-      {/* Bottom Workspace Status & Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.0, duration: 0.8 }}
-        style={{ opacity: heroOpacity }}
-        className="relative z-30 px-6 py-4 flex items-center justify-between font-mono text-[10px] text-studio-muted dark:text-studio-muted-dark pointer-events-none"
-      >
-        {/* Left Drag/Interact Hint */}
-        <div className="hidden sm:flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-studio-blue" />
-          <span className="uppercase tracking-widest text-studio-dark dark:text-studio-light-text font-medium">
-            CREATIVE DESKTOP
-          </span>
-          <span className="text-studio-subtle dark:text-studio-subtle-dark">• DRAG TILES &amp; BUDDY FREELY</span>
-        </div>
-
-        {/* Center/Right Scroll Cue */}
-        <button
-          type="button"
-          onClick={onExploreClick}
-          className="pointer-events-auto mx-auto sm:mx-0 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-studio-card/90 dark:bg-studio-card-dark/90 border border-studio-border dark:border-studio-border-dark hover:border-studio-blue text-studio-dark dark:text-studio-light-text hover:text-studio-blue transition-all shadow-sm group"
-        >
-          <Mouse size={11} className="group-hover:translate-y-0.5 transition-transform" />
-          <span className="tracking-wider uppercase font-semibold">SCROLL TO EXPLORE</span>
-          <ArrowDown size={10} className="group-hover:translate-y-0.5 transition-transform" />
-        </button>
-
-        {/* Right Corner Coordinates / Version */}
-        <div className="hidden sm:block text-right text-studio-subtle dark:text-studio-subtle-dark">
-          <span>WORKSPACE OS // HARSH SHAH STUDIO</span>
-        </div>
-      </motion.div>
     </section>
   );
 }
