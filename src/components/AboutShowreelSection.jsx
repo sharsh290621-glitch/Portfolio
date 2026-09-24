@@ -314,9 +314,9 @@ export default function AboutShowreelSection({ onOpenProject }) {
   return (
     <section
       id="about-showreel"
-      className="relative z-20 w-full py-16 sm:py-24 md:py-28 flex flex-col items-center justify-center select-none"
+      className="relative z-20 w-full pt-0 pb-16 sm:pb-24 -mt-24 sm:-mt-32 md:-mt-40 flex flex-col items-center justify-center select-none"
     >
-      {/* 1. Featured Showreel Video Frame (60-70% Viewport Width) */}
+      {/* 1. Featured Showreel Video Frame (60-70% Viewport Width, peeking into hero fold) */}
       <div className="w-full max-w-4xl lg:max-w-5xl px-4 sm:px-6">
         <motion.div
           ref={videoContainerRef}
@@ -473,61 +473,6 @@ export default function AboutShowreelSection({ onOpenProject }) {
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
-
-      {/* 2. Creative Headline & Short Biography Below Video */}
-      <div className="w-full max-w-4xl lg:max-w-5xl px-4 sm:px-6 pt-10 sm:pt-14 text-center">
-        {/* Creative Section Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-studio-surface-dark border border-studio-border dark:border-studio-border-dark font-mono text-[11px] text-studio-muted dark:text-studio-muted-dark shadow-sm mb-4"
-        >
-          <Film size={12} className="text-studio-blue" />
-          <span>ABOUT ME • SHOWREEL 2026</span>
-        </motion.div>
-
-        {/* Creative Headline for Video */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight text-studio-dark dark:text-white leading-[1.15] max-w-3xl mx-auto"
-        >
-          Bridging Visual Identity, Spatial UI &amp; Kinetic Motion.
-        </motion.h2>
-
-        {/* Short Biography Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-studio-muted dark:text-studio-muted-dark font-sans leading-relaxed max-w-2xl mx-auto"
-        >
-          I’m <span className="font-bold text-studio-dark dark:text-white">Harsh Shah</span> — a multidisciplinary designer merging graphic systems, digital product design, and 3D motion. I craft unexpected visual narratives and tactile experiences built to inspire and perform.
-        </motion.p>
-
-        {/* Creative Disciplines Pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 max-w-xl mx-auto"
-        >
-          {['Brand Identity', 'UI/UX Architecture', 'Motion Graphics', 'Design Systems', '3D & Editorial'].map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 rounded-full bg-white/80 dark:bg-studio-surface-dark border border-studio-border dark:border-studio-border-dark font-mono text-[10px] font-semibold text-studio-dark dark:text-white shadow-subtle"
-            >
-              {tag}
-            </span>
-          ))}
         </motion.div>
       </div>
     </section>

@@ -45,8 +45,8 @@ function PortfolioApp() {
   return (
     <div className="relative min-h-screen bg-studio-bg dark:bg-studio-bg-dark text-studio-dark dark:text-studio-light-text selection:bg-studio-blue selection:text-white transition-colors duration-300">
       {/* Continuous Global Dot Grid & Noise Texture (Flows across the entire page without partitions) */}
-      <div className="fixed inset-0 studio-grid-pattern pointer-events-none z-0" />
-      <div className="fixed inset-0 studio-noise pointer-events-none opacity-40 dark:opacity-30 z-0" />
+      <div className="fixed inset-0 studio-grid-pattern pointer-events-none opacity-25 z-0" />
+      <div className="fixed inset-0 studio-noise pointer-events-none opacity-30 dark:opacity-20 z-0" />
 
       {/* Main Page Content */}
       <div className="relative z-10">
