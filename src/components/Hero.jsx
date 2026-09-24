@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import PortfolioNavbar from './PortfolioNavbar';
 import HeroTypography from './HeroTypography';
 import FloatingCanvas from './FloatingCanvas';
 import PenToolCursor from './PenToolCursor';
@@ -29,9 +28,6 @@ export default function Hero({ onSelectProject, onExploreClick }) {
     >
       {/* Photoshop Custom Pen Tool Cursor Follower */}
       <PenToolCursor containerRef={containerRef} activeMode={cursorMode} />
-
-      {/* Fixed/Sticky Top Navigation with Music Player & Theme Toggle */}
-      <PortfolioNavbar onSelectSection={onExploreClick} onOpenProject={onSelectProject} />
 
       {/* Interactive Creative Desktop Canvas */}
       <motion.div

@@ -78,13 +78,26 @@
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Hide native OS cursor in hero so custom Photoshop Pen Tool cursor is exclusively visible */
+/* Hide native OS cursor exclusively inside the hero creative canvas */
 @media (min-width: 768px) {
-  #hero,
-  #hero *,
-  #hero a,
-  #hero button,
-  #hero input {
-    cursor: none !important;
+  #hero {
+    cursor: none;
+  }
+  #hero * {
+    cursor: none;
+  }
+  header,
+  header *,
+  nav,
+  nav *,
+  #about-showreel,
+  #about-showreel * {
+    cursor: auto !important;
+  }
+  header a,
+  header button,
+  nav a,
+  nav button {
+    cursor: pointer !important;
   }
 }
