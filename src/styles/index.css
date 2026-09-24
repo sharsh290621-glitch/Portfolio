@@ -25,11 +25,16 @@
   }
 }
 
-/* Studio Desktop Grid Pattern with ~35% clear tactile visibility */
+/* Studio Desktop Grid Pattern with clear tactile visibility in light and dark */
 .studio-grid-pattern {
   background-image: 
-    radial-gradient(circle at 1.5px 1.5px, rgba(175, 170, 155, 0.85) 1.5px, transparent 0);
+    radial-gradient(circle at 1.5px 1.5px, rgba(160, 155, 140, 0.5) 1.5px, transparent 0);
   background-size: 28px 28px;
+}
+
+.dark .studio-grid-pattern {
+  background-image: 
+    radial-gradient(circle at 1.5px 1.5px, rgba(255, 255, 255, 0.2) 1.5px, transparent 0);
 }
 
 /* Custom Fine Noise Texture Overlay */

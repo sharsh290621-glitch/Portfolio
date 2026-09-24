@@ -43,17 +43,23 @@ function PortfolioApp() {
 
   return (
     <div className="relative min-h-screen bg-studio-bg dark:bg-studio-bg-dark text-studio-dark dark:text-studio-light-text selection:bg-studio-blue selection:text-white transition-colors duration-300">
-      {/* 100vh Hero Interactive Digital Studio Workspace */}
-      <Hero
-        onSelectProject={(project) => setSelectedProject(project)}
-        onExploreClick={scrollToWork}
-      />
+      {/* Continuous Global Dot Grid & Noise Texture (Flows across the entire page without partitions) */}
+      <div className="fixed inset-0 studio-grid-pattern pointer-events-none z-0" />
+      <div className="fixed inset-0 studio-noise pointer-events-none opacity-40 dark:opacity-30 z-0" />
 
-      {/* Seamless Transition Boundary Preview into Upcoming Work Section */}
-      <div
-        id="work-preview-boundary"
-        className="relative z-20 border-t border-studio-border dark:border-studio-border-dark bg-studio-card/60 dark:bg-studio-card-dark/60 backdrop-blur-sm px-6 py-20 md:py-28 transition-colors duration-300"
-      >
+      {/* Main Page Content */}
+      <div className="relative z-10">
+        {/* 100vh Hero Interactive Digital Studio Workspace */}
+        <Hero
+          onSelectProject={(project) => setSelectedProject(project)}
+          onExploreClick={scrollToWork}
+        />
+
+        {/* Seamless Continuous Work Section (No partition / No background breaks) */}
+        <div
+          id="work-preview-boundary"
+          className="relative z-20 px-6 py-20 md:py-28 transition-colors duration-300"
+        >
         <div className="max-w-5xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-studio-surface-dark border border-studio-border dark:border-studio-border-dark font-mono text-[11px] text-studio-muted dark:text-studio-muted-dark shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-studio-blue animate-pulse" />
@@ -97,18 +103,19 @@ function PortfolioApp() {
               <span>RETURN TO DESKTOP HERO</span>
             </button>
           </div>
+          </div>
         </div>
-      </div>
 
-      {/* Project Preview Modal */}
-      {selectedProject && (
-        <ProjectPreview
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onNext={handleNextProject}
-          onPrev={handlePrevProject}
-        />
-      )}
+        {/* Project Preview Modal */}
+        {selectedProject && (
+          <ProjectPreview
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onNext={handleNextProject}
+            onPrev={handlePrevProject}
+          />
+        )}
+      </div>
     </div>
   );
 }

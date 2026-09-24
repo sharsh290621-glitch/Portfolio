@@ -63,16 +63,6 @@ export default function FloatingCanvas({ onSelectProject, onHoverTileChange }) {
       onMouseMove={handleMouseMove}
       className="absolute inset-0 top-14 sm:top-16 w-full h-[calc(100%-4rem)] overflow-hidden pointer-events-auto"
     >
-      {/* Studio Canvas Background Dot Grid: 35% opacity clearly visible in light & dark */}
-      <div
-        className={`absolute inset-0 studio-grid-pattern transition-all duration-300 pointer-events-none opacity-35 dark:opacity-20 ${
-          isAnyHovered ? 'filter blur-[1.5px]' : ''
-        }`}
-      />
-      <div
-        className="absolute inset-0 studio-noise pointer-events-none opacity-35 dark:opacity-25"
-      />
-
       {/* Floating Creative Objects Layer */}
       {visibleObjects.map((item, index) => (
         <FloatingObject

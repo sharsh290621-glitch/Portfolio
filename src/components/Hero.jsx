@@ -26,7 +26,7 @@ export default function Hero({ onSelectProject, onExploreClick }) {
     <section
       ref={containerRef}
       id="hero"
-      className="relative w-full h-screen min-h-[680px] max-h-[1200px] overflow-hidden flex flex-col justify-between bg-studio-bg dark:bg-studio-bg-dark transition-colors duration-300 select-none cursor-none"
+      className="relative w-full h-screen min-h-[680px] max-h-[1200px] overflow-hidden flex flex-col justify-between bg-transparent transition-colors duration-300 select-none cursor-none"
     >
       {/* Photoshop Custom Pen Tool Cursor Follower */}
       <PenToolCursor containerRef={containerRef} activeMode={cursorMode} />
