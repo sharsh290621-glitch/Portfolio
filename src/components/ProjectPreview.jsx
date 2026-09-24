@@ -86,8 +86,8 @@ export default function ProjectPreview({ project, onClose, onNext, onPrev }) {
               ) : project.type === 'experience-counter' ? (
                 <div className="w-full py-8 flex items-center justify-center bg-studio-card dark:bg-studio-card-dark">
                   <ExperienceCounterTile
-                    startDate={project.startDate || '2024-12-01T00:00:00'}
-                    width={320}
+                    startDate={project.startDate || '2023-12-01T00:00:00'}
+                    width={280}
                     isHovered={true}
                   />
                 </div>

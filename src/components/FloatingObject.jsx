@@ -103,7 +103,7 @@ export default function FloatingObject({
       case 'experience-counter':
         return (
           <ExperienceCounterTile
-            startDate={item.startDate || '2024-12-01T00:00:00'}
+            startDate={item.startDate || '2023-12-01T00:00:00'}
             isHovered={isThisHovered}
             width={item.width || 215}
           />
