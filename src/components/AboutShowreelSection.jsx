@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import {
   Play,
   Pause,
   Volume2,
   VolumeX,
   Maximize2,
-  Minimize2,
-  Sparkles,
-  ArrowUpRight,
-  Film,
-  Layers,
-  Sparkle
+  Minimize2
 } from 'lucide-react';
 
 export default function AboutShowreelSection({ onOpenProject }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -24,11 +19,20 @@ export default function AboutShowreelSection({ onOpenProject }) {
   const [currentTime, setCurrentTime] = useState(0);
 
   const videoContainerRef = useRef(null);
+  const videoFrameRef = useRef(null);
   const videoElementRef = useRef(null);
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(null);
   const audioContextRef = useRef(null);
   const synthGainRef = useRef(null);
+
+  // Motion values for the floating "play video" glass pill button
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.1 };
+  const pillX = useSpring(mouseX, springConfig);
+  const pillY = useSpring(mouseY, springConfig);
 
   // Web Audio procedural ambient sound synthesizer for showreel
   const startAudio = () => {
@@ -89,20 +93,40 @@ export default function AboutShowreelSection({ onOpenProject }) {
     }
   };
 
-  // Hover play & audio activation
+  // Center the pill by default
   useEffect(() => {
-    if (isHovered) {
-      setIsPlaying(true);
-      if (!isMuted) {
-        startAudio();
-      }
-      if (videoElementRef.current) {
-        videoElementRef.current.play().catch(() => {});
-      }
-    } else {
-      stopAudio();
+    if (!isHovered && videoFrameRef.current) {
+      const rect = videoFrameRef.current.getBoundingClientRect();
+      mouseX.set(rect.width / 2);
+      mouseY.set(rect.height / 2);
     }
-  }, [isHovered, isMuted]);
+  }, [isHovered, mouseX, mouseY]);
+
+  // Handle mouse move inside video frame for cursor follower
+  const handleMouseMove = (e) => {
+    if (videoFrameRef.current) {
+      const rect = videoFrameRef.current.getBoundingClientRect();
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+    }
+  };
+
+  // Click handler to restart video with sound from beginning
+  const handleFrameClick = (e) => {
+    e.stopPropagation();
+    // Restart video from start
+    setCurrentTime(0);
+    setProgress(0);
+    setIsPlaying(true);
+    setIsMuted(false);
+    startAudio();
+
+    if (videoElementRef.current) {
+      videoElementRef.current.currentTime = 0;
+      videoElementRef.current.muted = false;
+      videoElementRef.current.play().catch(() => {});
+    }
+  };
 
   // Track fullscreen changes
   useEffect(() => {
@@ -276,7 +300,7 @@ export default function AboutShowreelSection({ onOpenProject }) {
     setIsMuted(nextMuted);
     if (nextMuted) {
       stopAudio();
-    } else if (isPlaying || isHovered) {
+    } else {
       startAudio();
     }
     if (videoElementRef.current) {
@@ -316,12 +340,10 @@ export default function AboutShowreelSection({ onOpenProject }) {
       id="about-showreel"
       className="relative z-20 w-full pt-0 pb-16 sm:pb-24 -mt-24 sm:-mt-32 md:-mt-40 flex flex-col items-center justify-center select-none"
     >
-      {/* 1. Featured Showreel Video Frame (60-70% Viewport Width, peeking into hero fold) */}
+      {/* Featured Showreel Video Frame (60-70% Viewport Width, peeking into hero fold) */}
       <div className="w-full max-w-4xl lg:max-w-5xl px-4 sm:px-6">
         <motion.div
           ref={videoContainerRef}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -347,7 +369,7 @@ export default function AboutShowreelSection({ onOpenProject }) {
             {/* Right Status Badges */}
             <div className="flex items-center gap-3">
               {/* Soundwave Indicator */}
-              {isHovered && !isMuted && isPlaying && (
+              {!isMuted && isPlaying && (
                 <div className="flex items-center gap-0.5 h-3 px-1.5 py-0.5 rounded bg-studio-blue/30 border border-studio-blue/40">
                   <span className="w-0.5 h-full bg-studio-blue animate-pulse" />
                   <span className="w-0.5 h-2 bg-sky-300 animate-pulse [animation-delay:0.15s]" />
@@ -363,10 +385,14 @@ export default function AboutShowreelSection({ onOpenProject }) {
             </div>
           </div>
 
-          {/* Video Container (16:9 Aspect Ratio) */}
+          {/* Video Container (16:9 Aspect Ratio) with Cursor-Following Glass "play video" Pill */}
           <div
-            onClick={togglePlay}
-            className={`relative w-full cursor-pointer overflow-hidden ${
+            ref={videoFrameRef}
+            onClick={handleFrameClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onMouseMove={handleMouseMove}
+            className={`relative w-full overflow-hidden cursor-none ${
               isFullscreen ? 'h-[calc(100vh-42px)]' : 'aspect-video'
             }`}
           >
@@ -389,25 +415,35 @@ export default function AboutShowreelSection({ onOpenProject }) {
               className="w-full h-full object-cover block"
             />
 
-            {/* Big Center Play / Pause Floating Overlay on Hover */}
-            <AnimatePresence>
-              {(!isPlaying || isHovered) && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.85 }}
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
-                >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-2xl group-hover:scale-110 transition-transform">
-                    {isPlaying ? (
-                      <Pause size={28} className="fill-white" />
-                    ) : (
-                      <Play size={28} className="fill-white ml-1" />
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Persistent Glass Pill "▶ play video" Cursor Follower (User Reference Image) */}
+            <motion.div
+              style={{
+                x: pillX,
+                y: pillY,
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                pointerEvents: 'none',
+                zIndex: 40,
+              }}
+              className="will-change-transform -translate-x-1/2 -translate-y-1/2"
+            >
+              <motion.div
+                whileTap={{ scale: 0.92 }}
+                className="relative flex items-center gap-2.5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-gradient-to-b from-white/35 via-black/55 to-black/85 backdrop-blur-xl border border-white/60 shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1.5px_2px_rgba(255,255,255,0.7)] group-hover:border-white transition-colors"
+              >
+                {/* Curved Gloss Reflection Highlight */}
+                <div className="absolute inset-x-2 top-0.5 h-1/2 rounded-t-full bg-gradient-to-b from-white/40 to-transparent pointer-events-none opacity-80" />
+
+                {/* White Play Icon Triangle */}
+                <Play size={13} className="fill-white text-white filter drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+
+                {/* Text "play video" */}
+                <span className="font-sans text-xs sm:text-sm font-semibold tracking-wide text-white filter drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                  play video
+                </span>
+              </motion.div>
+            </motion.div>
 
             {/* Bottom Controls Overlay */}
             <div className="absolute inset-x-0 bottom-0 z-30 p-3 sm:p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -458,7 +494,7 @@ export default function AboutShowreelSection({ onOpenProject }) {
 
                 <div className="flex items-center gap-3">
                   <span className="hidden sm:inline-block text-[10px] text-white/50 tracking-wider">
-                    HOVER TO PLAY &amp; LISTEN
+                    CLICK TO REPLAY FROM START
                   </span>
 
                   <button

@@ -69,71 +69,73 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
       }}
       className="hidden md:block will-change-transform"
     >
-      {/* Precision Tip Indicator Circle (Hot spot at 0,0) */}
-      <div className="relative">
+      {/* Precision Tip Hot Spot anchored exactly at top center (12px offset) */}
+      <div className="relative -left-[12px] top-0">
         <motion.div
           animate={{
-            scale: isClicking ? 0.75 : 1,
+            scale: isClicking ? 0.78 : 1,
             rotate: activeMode === 'rotate' ? -15 : 0,
           }}
           transition={{ duration: 0.1 }}
-          className="relative -top-[1px] -left-[1px] filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.35)]"
+          className="relative filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.45)]"
         >
-          {/* Classic Photoshop Pen Tool SVG (Tip point anchored at top-left 0,0) */}
+          {/* Iconic Upright Photoshop Vector Pen Nib (User Reference #2) */}
           <svg
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
+            width="24"
+            height="31"
+            viewBox="0 0 24 31"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Pen Nib Body (Metallic Gradient) */}
+            {/* Pen Nib Body with high-contrast fill & crisp stroke */}
             <path
-              d="M1 1 L11 4.5 L17 10.5 L10.5 17 L4.5 11 Z"
-              fill="url(#pen-metal)"
-              stroke="#0f172a"
-              strokeWidth="1.2"
+              d="M12 0.5 L0.5 14.5 L4 20.5 L20 20.5 L23.5 14.5 Z"
+              fill="#0F172A"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
               strokeLinejoin="round"
             />
-            {/* Pen Shaft / Handle */}
-            <path
-              d="M10.5 17 L17 10.5 L24 17.5 C25.5 19 25.5 21.5 24 23 C22.5 24.5 20 24.5 18.5 23 L10.5 17 Z"
-              fill="#1E293B"
-              stroke="#0f172a"
-              strokeWidth="1.2"
-              strokeLinejoin="round"
-            />
-            {/* Chrome Collar Band */}
-            <path
-              d="M10 16.5 L16.5 10 L17.5 11 L11 17.5 Z"
-              fill="#94A3B8"
-              stroke="#0f172a"
-              strokeWidth="0.8"
-            />
-            {/* Center Slit Line */}
+
+            {/* Vertical Center Slit */}
             <line
-              x1="1"
-              y1="1"
-              x2="9"
-              y2="9"
-              stroke="#0f172a"
-              strokeWidth="1.2"
+              x1="12"
+              y1="0.5"
+              x2="12"
+              y2="12.5"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
               strokeLinecap="round"
             />
-            {/* Breather Hole */}
-            <circle cx="9.5" cy="9.5" r="1.3" fill="#0f172a" />
-            
-            {/* Tip Hot Spot Target (Pixel Precision) */}
-            <circle cx="1" cy="1" r="0.8" fill="#0055FF" />
 
-            <defs>
-              <linearGradient id="pen-metal" x1="1" y1="1" x2="17" y2="17" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#FFFFFF" />
-                <stop offset="35%" stopColor="#E2E8F0" />
-                <stop offset="70%" stopColor="#CBD5E1" />
-                <stop offset="100%" stopColor="#94A3B8" />
-              </linearGradient>
-            </defs>
+            {/* Circular Breather Hole */}
+            <circle cx="12" cy="13.8" r="2.2" fill="#FFFFFF" />
+
+            {/* Collar Tier 1 */}
+            <rect
+              x="1.8"
+              y="21.5"
+              width="20.4"
+              height="3.8"
+              rx="1.2"
+              fill="#0F172A"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
+            />
+
+            {/* Collar Tier 2 (Base) */}
+            <rect
+              x="3.8"
+              y="26.2"
+              width="16.4"
+              height="3.8"
+              rx="1.2"
+              fill="#0F172A"
+              stroke="#FFFFFF"
+              strokeWidth="1.3"
+            />
+
+            {/* Active Pixel Precision Tip Indicator */}
+            <circle cx="12" cy="0.8" r="1.1" fill="#0055FF" />
           </svg>
 
           {/* Mode Sub-Badge (Anchor ^ / Plus + / Rotate ⟲ / Warp ❖) */}
