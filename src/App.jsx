@@ -48,8 +48,8 @@ function PortfolioApp() {
       {/* Fixed/Sticky Top Navigation with Music Player & Theme Toggle (Top-level clean cursor) */}
       <PortfolioNavbar onSelectSection={scrollToWork} onOpenProject={(proj) => setSelectedProject(proj)} />
 
-      {/* Continuous Global Dot Grid & Noise Texture (Flows across the entire page without partitions) */}
-      <div className="fixed inset-0 studio-grid-pattern pointer-events-none opacity-25 z-0" />
+      {/* Continuous Global Dot Grid & Noise Texture (Flows across the entire page without partitions at 35% opacity) */}
+      <div className="fixed inset-0 studio-grid-pattern pointer-events-none opacity-35 z-0" />
       <div className="fixed inset-0 studio-noise pointer-events-none opacity-30 dark:opacity-20 z-0" />
 
       {/* Main Page Content */}
