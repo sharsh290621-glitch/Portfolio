@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import CreativeWindow from './CreativeWindow';
 import MockVideo from './MockVideo';
+import ExperienceCounterTile from './ExperienceCounterTile';
 import { Folder, ExternalLink } from 'lucide-react';
 
 export default function FloatingObject({
@@ -97,6 +98,15 @@ export default function FloatingObject({
               </div>
             </div>
           </div>
+        );
+
+      case 'experience-counter':
+        return (
+          <ExperienceCounterTile
+            startDate={item.startDate || '2024-12-01T00:00:00'}
+            isHovered={isThisHovered}
+            width={item.width || 215}
+          />
         );
 
       case 'sticky-note':

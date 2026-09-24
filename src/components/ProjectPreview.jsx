@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import MockVideo from './MockVideo';
+import ExperienceCounterTile from './ExperienceCounterTile';
 
 export default function ProjectPreview({ project, onClose, onNext, onPrev }) {
   // Close on Escape key press
@@ -82,6 +83,14 @@ export default function ProjectPreview({ project, onClose, onNext, onPrev }) {
                   category={project.category}
                   aspectRatio="16/10"
                 />
+              ) : project.type === 'experience-counter' ? (
+                <div className="w-full py-8 flex items-center justify-center bg-studio-card dark:bg-studio-card-dark">
+                  <ExperienceCounterTile
+                    startDate={project.startDate || '2024-12-01T00:00:00'}
+                    width={320}
+                    isHovered={true}
+                  />
+                </div>
               ) : (
                 <div className="w-full flex items-center justify-center p-2 bg-studio-card dark:bg-studio-card-dark">
                   <img

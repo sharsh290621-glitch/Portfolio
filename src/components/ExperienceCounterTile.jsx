@@ -1,0 +1,150 @@
+import React, { useState, useEffect } from 'react';
+import { Clock, Calendar, Activity, Sparkles } from 'lucide-react';
+
+export default function ExperienceCounterTile({
+  startDate = '2024-12-01T00:00:00',
+  isHovered = false,
+  width = 220,
+}) {
+  const [timeData, setTimeData] = useState({
+    years: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    totalDays: 0,
+    formattedString: '00y 00h 00m 00s | 0 Days',
+  });
+
+  useEffect(() => {
+    const start = new Date(startDate).getTime();
+
+    const calculateTime = () => {
+      const now = new Date().getTime();
+      const diffMs = Math.max(0, now - start);
+
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const years = Math.floor(totalDays / 365.25);
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+      const pad = (n) => (n < 10 ? `0${n}` : `${n}`);
+      const formattedString = `${pad(years)}y ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s | ${totalDays} Days`;
+
+      setTimeData({
+        years,
+        hours,
+        minutes,
+        seconds,
+        totalDays,
+        formattedString,
+      });
+    };
+
+    calculateTime();
+    const interval = setInterval(calculateTime, 1000);
+    return () => clearInterval(interval);
+  }, [startDate]);
+
+  const pad = (n) => (n < 10 ? `0${n}` : `${n}`);
+
+  return (
+    <div
+      className={`group relative rounded-xl border border-studio-border dark:border-studio-border-dark bg-white/95 dark:bg-studio-surface-dark/95 backdrop-blur-md shadow-window dark:shadow-window-dark overflow-hidden transition-all duration-300 select-none ${
+        isHovered
+          ? 'shadow-window-hover border-studio-blue/70 dark:border-studio-blue/70 ring-1 ring-studio-blue/20'
+          : ''
+      }`}
+      style={{ width: typeof width === 'number' ? `${width}px` : width }}
+    >
+      {/* Top Studio Titlebar */}
+      <div className="flex items-center justify-between px-2.5 py-1.5 bg-studio-card dark:bg-studio-card-dark border-b border-studio-border/70 dark:border-studio-border-dark/70">
+        {/* macOS Traffic Dots */}
+        <div className="flex items-center gap-1 flex-shrink-0">
+          <div className="w-2 h-2 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
+          <div className="w-2 h-2 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
+          <div className="w-2 h-2 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
+        </div>
+
+        {/* Title */}
+        <div className="flex items-center gap-1 px-1">
+          <Clock size={9} className="text-studio-blue" />
+          <span className="font-mono text-[9px] font-bold text-studio-dark dark:text-white tracking-wide uppercase">
+            Total Experience
+          </span>
+        </div>
+
+        {/* Live Status Indicator */}
+        <div className="flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[7px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>LIVE</span>
+        </div>
+      </div>
+
+      {/* Main Counter Display */}
+      <div className="p-3 bg-gradient-to-b from-transparent to-studio-blue/[0.03] dark:to-studio-blue/[0.06] flex flex-col gap-2">
+        {/* Primary Monospace String: yy hours minutes and second | days */}
+        <div className="p-2 rounded-lg bg-studio-dark/5 dark:bg-black/40 border border-studio-border/60 dark:border-white/10 flex flex-col items-center justify-center text-center">
+          <span className="font-mono text-[11px] sm:text-xs font-black tracking-tight text-studio-blue dark:text-sky-300 drop-shadow-sm whitespace-nowrap">
+            {timeData.formattedString}
+          </span>
+        </div>
+
+        {/* Segmented Digital Matrix Boxes */}
+        <div className="grid grid-cols-4 gap-1.5 pt-0.5">
+          {/* Years */}
+          <div className="flex flex-col items-center p-1 rounded-md bg-white dark:bg-studio-card-dark border border-studio-border/60 dark:border-studio-border-dark/60 shadow-xs">
+            <span className="font-mono text-[11px] font-extrabold text-studio-dark dark:text-white">
+              {pad(timeData.years)}
+            </span>
+            <span className="font-mono text-[6.5px] text-studio-muted dark:text-studio-muted-dark uppercase tracking-wider font-semibold">
+              YRS
+            </span>
+          </div>
+
+          {/* Hours */}
+          <div className="flex flex-col items-center p-1 rounded-md bg-white dark:bg-studio-card-dark border border-studio-border/60 dark:border-studio-border-dark/60 shadow-xs">
+            <span className="font-mono text-[11px] font-extrabold text-studio-dark dark:text-white">
+              {pad(timeData.hours)}
+            </span>
+            <span className="font-mono text-[6.5px] text-studio-muted dark:text-studio-muted-dark uppercase tracking-wider font-semibold">
+              HRS
+            </span>
+          </div>
+
+          {/* Minutes */}
+          <div className="flex flex-col items-center p-1 rounded-md bg-white dark:bg-studio-card-dark border border-studio-border/60 dark:border-studio-border-dark/60 shadow-xs">
+            <span className="font-mono text-[11px] font-extrabold text-studio-dark dark:text-white">
+              {pad(timeData.minutes)}
+            </span>
+            <span className="font-mono text-[6.5px] text-studio-muted dark:text-studio-muted-dark uppercase tracking-wider font-semibold">
+              MIN
+            </span>
+          </div>
+
+          {/* Seconds (Animated Glow) */}
+          <div className="flex flex-col items-center p-1 rounded-md bg-studio-blue/10 dark:bg-studio-blue/20 border border-studio-blue/40 shadow-xs">
+            <span className="font-mono text-[11px] font-extrabold text-studio-blue dark:text-sky-300">
+              {pad(timeData.seconds)}
+            </span>
+            <span className="font-mono text-[6.5px] text-studio-blue dark:text-sky-300 uppercase tracking-wider font-bold">
+              SEC
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Footer: Start date anchor */}
+      <div className="px-2.5 py-1 bg-studio-card/80 dark:bg-studio-card-dark/80 border-t border-studio-border/50 dark:border-studio-border-dark/50 flex items-center justify-between text-[7.5px] font-mono text-studio-muted dark:text-studio-muted-dark">
+        <div className="flex items-center gap-1">
+          <Calendar size={8} className="text-studio-blue" />
+          <span>SINCE DEC 01, 2024</span>
+        </div>
+        <div className="flex items-center gap-1 text-studio-dark dark:text-white font-semibold">
+          <Activity size={8} className="text-emerald-500 animate-pulse" />
+          <span>{timeData.totalDays} DAYS</span>
+        </div>
+      </div>
+    </div>
+  );
+}
