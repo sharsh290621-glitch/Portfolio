@@ -29,7 +29,7 @@ export default function PortfolioNavbar({ onSelectSection, onOpenProject }) {
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 md:px-8 py-2.5 sm:py-3 border-b border-studio-border/70 dark:border-studio-border-dark/80 bg-studio-bg/90 dark:bg-studio-bg-dark/90 backdrop-blur-md transition-colors"
+        className="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 md:px-8 py-2.5 sm:py-3 border-b border-studio-border/70 dark:border-studio-border-dark/80 bg-studio-bg/90 dark:bg-studio-bg-dark/90 backdrop-blur-md transition-colors cursor-default pointer-events-auto"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs tracking-wider">
           {/* Left Brand Identity */}

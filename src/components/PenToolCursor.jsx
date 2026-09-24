@@ -16,12 +16,13 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Check if cursor is over the about-showreel section or any non-hero section
+      // Check if cursor is over the navbar, about-showreel section, or any modal
       const target = document.elementFromPoint(e.clientX, e.clientY);
+      const isOverNavbar = target?.closest('header') || e.clientY < 56;
       const isOverShowreel = target?.closest('#about-showreel') || false;
       const isOverModal = target?.closest('[role="dialog"]') || target?.closest('.z-50') || false;
 
-      if (isOverShowreel || isOverModal) {
+      if (isOverNavbar || isOverShowreel || isOverModal) {
         setInBounds(false);
         return;
       }

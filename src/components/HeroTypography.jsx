@@ -68,39 +68,7 @@ export default function HeroTypography({ onExploreClick, onAboutClick, onCursorM
         I design visuals, interfaces and experiences.
       </motion.p>
 
-      {/* Dual CTA Buttons */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-7 sm:mt-9 flex items-center gap-3 sm:gap-4 pointer-events-auto"
-      >
-        {/* Primary Button */}
-        <button
-          type="button"
-          onClick={onExploreClick}
-          className="group inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-studio-dark dark:bg-studio-blue text-white font-mono text-xs font-semibold tracking-wider transition-all duration-300 hover:bg-studio-blue dark:hover:bg-studio-blue-dark hover:shadow-lg hover:shadow-studio-blue/25 active:scale-95"
-        >
-          <span>EXPLORE WORK</span>
-          <ArrowUpRight
-            size={15}
-            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </button>
 
-        {/* Secondary Button */}
-        <button
-          type="button"
-          onClick={onAboutClick || onExploreClick}
-          className="group inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white dark:bg-studio-card-dark border border-studio-border dark:border-studio-border-dark text-studio-dark dark:text-white font-mono text-xs font-semibold tracking-wider transition-all duration-300 hover:border-studio-blue hover:text-studio-blue hover:shadow-sm active:scale-95"
-        >
-          <span>ABOUT ME</span>
-          <ArrowUpRight
-            size={15}
-            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </button>
-      </motion.div>
     </div>
   );
 }
