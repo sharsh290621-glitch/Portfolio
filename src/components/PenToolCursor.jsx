@@ -16,6 +16,16 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
 
   useEffect(() => {
     const handleMouseMove = (e) => {
+      // Check if cursor is over the about-showreel section or any non-hero section
+      const target = document.elementFromPoint(e.clientX, e.clientY);
+      const isOverShowreel = target?.closest('#about-showreel') || false;
+      const isOverModal = target?.closest('[role="dialog"]') || target?.closest('.z-50') || false;
+
+      if (isOverShowreel || isOverModal) {
+        setInBounds(false);
+        return;
+      }
+
       if (containerRef?.current) {
         const rect = containerRef.current.getBoundingClientRect();
         if (
@@ -24,6 +34,21 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
           e.clientY >= rect.top &&
           e.clientY <= rect.bottom
         ) {
+          // Additional check: if cursor is within showreel element bounding box that overlaps hero
+          const showreelEl = document.getElementById('about-showreel');
+          if (showreelEl) {
+            const sRect = showreelEl.getBoundingClientRect();
+            if (
+              e.clientX >= sRect.left &&
+              e.clientX <= sRect.right &&
+              e.clientY >= sRect.top &&
+              e.clientY <= sRect.bottom
+            ) {
+              setInBounds(false);
+              return;
+            }
+          }
+
           setInBounds(true);
           mouseX.set(e.clientX);
           mouseY.set(e.clientY);
@@ -31,9 +56,7 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
           setInBounds(false);
         }
       } else {
-        setInBounds(true);
-        mouseX.set(e.clientX);
-        mouseY.set(e.clientY);
+        setInBounds(false);
       }
     };
 
@@ -41,7 +64,7 @@ export default function PenToolCursor({ containerRef, activeMode = 'pen', isVisi
     const handleMouseUp = () => setIsClicking(false);
     const handleMouseLeave = () => setInBounds(false);
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseleave', handleMouseLeave);
